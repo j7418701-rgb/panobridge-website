@@ -212,3 +212,90 @@ const createScrollToTopButton = () => {
 // createScrollToTopButton();
 
 console.log('Panobridge website loaded successfully! ✨');
+
+// ========================================
+// CONTACT FORM HANDLING
+// ========================================
+const contactForm = document.getElementById('contactForm');
+const formMessage = document.getElementById('formMessage');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = new FormData(contactForm);
+        const submitButton = contactForm.querySelector('button[type="submit"]');
+        const originalButtonText = submitButton.textContent;
+        
+        // Disable button and show loading state
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending...';
+        
+        try {
+            // Send form data to Formspree
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                // Success
+                formMessage.textContent = '✓ Thank you! Your message has been sent successfully. We\'ll get back to you within 24 hours.';
+                formMessage.className = 'form-message success';
+                contactForm.reset();
+                
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    formMessage.style.display = 'none';
+                }, 5000);
+            } else {
+                // Error
+                formMessage.textContent = '✗ Oops! Something went wrong. Please try again or email us directly.';
+                formMessage.className = 'form-message error';
+            }
+        } catch (error) {
+            // Network error
+            formMessage.textContent = '✗ Network error. Please check your connection and try again.';
+            formMessage.className = 'form-message error';
+        } finally {
+            // Re-enable button
+            submitButton.disabled = false;
+            submitButton.textContent = originalButtonText;
+        }
+    });
+}
+
+// Form field animations
+const formInputs = document.querySelectorAll('.form-group input, .form-group select, .form-group textarea');
+
+formInputs.forEach(input => {
+    input.addEventListener('focus', () => {
+        input.parentElement.classList.add('focused');
+    });
+    
+    input.addEventListener('blur', () => {
+        input.parentElement.classList.remove('focused');
+    });
+});
+
+// Phone number formatting (optional)
+const phoneInput = document.getElementById('phone');
+if (phoneInput) {
+    phoneInput.addEventListener('input', (e) => {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length > 0) {
+            if (value.length <= 3) {
+                value = `(${value}`;
+            } else if (value.length <= 6) {
+                value = `(${value.slice(0, 3)}) ${value.slice(3)}`;
+            } else {
+                value = `(${value.slice(0, 3)}) ${value.slice(3, 6)}-${value.slice(6, 10)}`;
+            }
+        }
+        e.target.value = value;
+    });
+}
