@@ -208,44 +208,96 @@
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="cta-content">
-            <h2>Ready to create your next project?</h2>
-            <a href="#contact" class="btn btn-primary">Start Your Project</a>
+    <!-- Contact Form Section -->
+    <section id="contact-form" class="contact-form-section">
+        <div class="container" style="max-width: 900px;">
+            <div class="section-header">
+                <h2>Start Your Project</h2>
+                <p class="form-subtitle">Let's bring your vision to life. Fill out the form below and we'll get back to you within 24 hours.</p>
+            </div>
+
+            <div class="form-container">
+                <form id="contactForm" class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    <!-- Name Input -->
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="John Doe">
+                    </div>
+
+                    <!-- Email Input -->
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="john@example.com">
+                    </div>
+
+                    <!-- Phone Input -->
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567">
+                    </div>
+
+                    <!-- Project Type -->
+                    <div class="form-group">
+                        <label for="projectType">Project Type *</label>
+                        <select id="projectType" name="projectType" required>
+                            <option value="">Select a service...</option>
+                            <option value="commercial">Commercial Design</option>
+                            <option value="hospitality">Hospitality Design</option>
+                            <option value="project-management">Project Management</option>
+                            <option value="consulting">Consulting</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <!-- Budget Range -->
+                    <div class="form-group">
+                        <label for="budget">Budget Range</label>
+                        <select id="budget" name="budget">
+                            <option value="">Select budget range...</option>
+                            <option value="under-50k">Under $50,000</option>
+                            <option value="50k-100k">$50,000 - $100,000</option>
+                            <option value="100k-250k">$100,000 - $250,000</option>
+                            <option value="250k-500k">$250,000 - $500,000</option>
+                            <option value="over-500k">Over $500,000</option>
+                        </select>
+                    </div>
+
+                    <!-- Message -->
+                    <div class="form-group">
+                        <label for="message">Project Details *</label>
+                        <textarea id="message" name="message" required rows="5" placeholder="Tell us about your project, timeline, and any specific requirements..."></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary btn-full">
+                        Send Message
+                    </button>
+
+                    <!-- Success/Error Messages -->
+                    <div id="formMessage" class="form-message"></div>
+                </form>
+            </div>
+
+            <!-- Contact Info Cards -->
+            <div class="contact-info-grid">
+                <div class="contact-info-card">
+                    <div class="contact-icon">📧</div>
+                    <h4>Email Us</h4>
+                    <p>contact@panobridge.com</p>
+                </div>
+                <div class="contact-info-card">
+                    <div class="contact-icon">📞</div>
+                    <h4>Call Us</h4>
+                    <p>+1 (555) 123-4567</p>
+                </div>
+                <div class="contact-info-card">
+                    <div class="contact-icon">📍</div>
+                    <h4>Visit Us</h4>
+                    <p>123 Design St, NYC</p>
+                </div>
+            </div>
         </div>
     </section>
-
-    <!-- Footer -->
-    <footer id="contact" class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h3 class="footer-logo">
-                        <span class="logo-accent">Pano</span>bridge
-                    </h3>
-                    <p>Transforming spaces through innovative design and creative excellence.</p>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="#">Commercial Design</a></li>
-                        <li><a href="#">Hospitality</a></li>
-                        <li><a href="#">Project Management</a></li>
-                        <li><a href="#">Consulting</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Our Team</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </div>
                 
                 <div class="footer-col">
                     <h4>Connect</h4>
